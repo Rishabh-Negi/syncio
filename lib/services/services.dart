@@ -1,7 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart';
+import 'package:spotify_sdk/spotify_sdk.dart';
 
 ///
 /// hide these client id and rest using some means
@@ -21,12 +20,10 @@ class ConnectToSpotify extends StatelessWidget {
 }
 
 void webAuth() async {
-  http.Response _response = await http.get(
-      '${_url}client_id=$_clientId&response_type=code&redirect_uri=$_redirectUri&scope=$_scope&state=34fFs29kd09');
-
-  print('${_response.body}');
-  
-  // Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+  try {
+    var _authToken = await SpotifySdk.getAuthenticationToken(
+        clientId: _clientId, redirectUrl: _redirectUri, scope: _scope);
+  } on PlatformException catch (e) {}
 }
 
 ///
