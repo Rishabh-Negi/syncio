@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spotify_sdk/spotify_sdk.dart';
 
 class Home extends StatefulWidget {
   final isConnected;

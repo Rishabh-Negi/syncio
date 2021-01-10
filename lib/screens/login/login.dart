@@ -12,28 +12,31 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
   }
 
-  var error;
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          body: Center(
-            child: Column(
-              children: [
-                RaisedButton(
-                  onPressed: () {
-                    webAuth();
-                    print('tapped');
-                  },
-                  child: Text('Press'),
-                ),
-              ],
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        if (snapshot.hasData)
+          return Scaffold(
+              appBar: AppBar(),
+              body: _body(context, snapshot.data as List<Widget>));
+
+        return Container(
+          color: Colors.blue,
+          child: Center(
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.white,
             ),
           ),
-        ),
-      ),
+        );
+      },
+      future: getToken(),
     );
   }
+
+  Widget _body(BuildContext context, List data) => Center(
+        child: Column(
+          children: data,
+        ),
+      );
 }

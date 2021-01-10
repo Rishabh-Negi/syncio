@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/login/login.dart';
+import 'package:syncio/screens/login/login.dart';
 
 void main() {
   runApp(Syncio());
@@ -13,7 +13,7 @@ class Syncio extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginPage()
+      home: LoginPage(),
     );
   }
 }
